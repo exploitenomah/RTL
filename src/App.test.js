@@ -3,12 +3,12 @@ import App, { camelCaseToSpaced } from './App';
 
 test('Button is present and has correct initial text', () => {
   render(<App />);
-  const buttonElement = screen.getByRole('button', {name: 'Change to red'});
+  const buttonElement = screen.getByRole('button', {name: 'Change to Medium Violet Red'});
   expect(buttonElement).toBeInTheDocument();
-  expect(buttonElement).toHaveStyle({backgroundColor: 'blue'})
+  expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Blue'})
   fireEvent.click(buttonElement)
-  expect(buttonElement).toHaveStyle({backgroundColor: 'red'})
-  expect(buttonElement.textContent).toBe('Change to blue')
+  expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Violet Red'})
+  expect(buttonElement.textContent).toBe('Change to Midnight Blue')
 });
 
 test('Checkbox and Button are present with correct initial state', () => {
@@ -42,7 +42,7 @@ describe('Change camel cased string to space seperated string', () => {
   test('Works for camel cased string with one inner upper cased letter', () => {
     expect(camelCaseToSpaced('midnightBlue')).toBe('midnight Blue')
   })
-  test('Works for camel cased string with multiple inner upper cased letter', () => {
+  test('Works for camel cased string with multiple inner upper cased letters', () => {
     expect(camelCaseToSpaced('darkVioletRed')).toBe('dark Violet Red')
   })
 })

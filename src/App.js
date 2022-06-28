@@ -6,14 +6,14 @@ export const camelCaseToSpaced = (string) => {
 }
 function App() {
   const [btnDisabled, setBtnDisabled] = useState(false)
-  const [color, setColor] = useState('blue')
-  const changeTo = color === 'blue' ? 'red' : 'blue'
+  const [color, setColor] = useState('MidnightBlue')
+  const changeTo = color === 'MidnightBlue' ? 'MediumVioletRed' : 'MidnightBlue'
   return (
     <div className="App">
       <button
       onClick={() => setColor(changeTo)}
       style={{backgroundColor: color}}
-      >Change to {changeTo}</button>
+      >Change to {camelCaseToSpaced(changeTo)}</button>
       
 
       <button 
