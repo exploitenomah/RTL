@@ -1,6 +1,9 @@
 
 import { useState, } from 'react'
-  
+
+export const camelCaseToSpaced = (string) => {
+  return string.replace(/\B([A-Z])\B/g, ' $1')
+}
 function App() {
   const [btnDisabled, setBtnDisabled] = useState(false)
   const [color, setColor] = useState('blue')

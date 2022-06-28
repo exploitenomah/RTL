@@ -1,5 +1,5 @@
 import { render, screen, fireEvent  } from '@testing-library/react';
-import App from './App';
+import App, { camelCaseToSpaced } from './App';
 
 test('Button is present and has correct initial text', () => {
   render(<App />);
@@ -33,4 +33,16 @@ test('Button is disabled and appropriate color when checkbox is checked', () => 
   expect(checkbox).not.toBeChecked()
   expect(button).toBeEnabled()
   expect(button).toHaveStyle({background: 'blue'})
+})
+
+describe('Change camel cased string to space seperated string', () => {
+  test('Works for non camel cased string', () => {
+    expect(camelCaseToSpaced('red')).toBe('red')
+  })
+  test('Works for camel cased string with one inner upper cased letter', () => {
+    expect(camelCaseToSpaced('midnightBlue')).toBe('midnight Blue')
+  })
+  test('Works for camel cased string with multiple inner upper cased letter', () => {
+    expect(camelCaseToSpaced('darkVioletRed')).toBe('dark Violet Red')
+  })
 })
