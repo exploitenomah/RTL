@@ -1,3 +1,5 @@
+
+
 import { render, screen, fireEvent  } from '@testing-library/react';
 import App, { camelCaseToSpaced } from './App';
 
@@ -8,7 +10,7 @@ test('Button is present and has correct initial text', () => {
   expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Blue'})
   fireEvent.click(buttonElement)
   expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Violet Red'})
-  expect(buttonElement.textContent).toBe('Change to Midnight Blue')
+  expect(buttonElement).toHaveTextContent('Change to Midnight Blue')
 });
 
 test('Checkbox and Button are present with correct initial state', () => {

@@ -2,8 +2,11 @@
 
 # dependencies
 /node_modules
+/.vscode
 /.pnp
 .pnp.js
+.env
+.eslintcache
 
 # testing
 /coverage
