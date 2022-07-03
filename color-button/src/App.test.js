@@ -1,6 +1,7 @@
 
 
-import { render, screen, fireEvent  } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App, { camelCaseToSpaced } from './App';
 
 test('Button is present and has correct initial text', () => {
@@ -8,7 +9,7 @@ test('Button is present and has correct initial text', () => {
   const buttonElement = screen.getByRole('button', {name: 'Change to Medium Violet Red'});
   expect(buttonElement).toBeInTheDocument();
   expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Blue'})
-  fireEvent.click(buttonElement)
+  userEvent.click(buttonElement)
   expect(buttonElement).toHaveStyle({backgroundColor: 'Midnight Violet Red'})
   expect(buttonElement).toHaveTextContent('Change to Midnight Blue')
 });
@@ -27,11 +28,11 @@ test('Button is disabled and appropriate color when checkbox is checked', () => 
   render(<App />)
   const button = screen.getByRole('button', {name: 'Checkbutton'})
   const checkbox = screen.getByRole('checkbox')
-  fireEvent.click(checkbox)
+  userEvent.click(checkbox)
   expect(checkbox).toBeChecked()
   expect(button).toBeDisabled()
   expect(button).toHaveStyle({background: 'gray'})
-  fireEvent.click(checkbox)
+  userEvent.click(checkbox)
   expect(checkbox).not.toBeChecked()
   expect(button).toBeEnabled()
   expect(button).toHaveStyle({background: 'blue'})
