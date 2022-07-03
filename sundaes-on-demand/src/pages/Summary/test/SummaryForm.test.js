@@ -1,5 +1,6 @@
 
-import { screen, render, fireEvent } from '@testing-library/react'
+import { screen, render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import SummaryForm from '../SummaryForm'
 
 
@@ -19,7 +20,7 @@ describe('Summary form is rendered and interactive', () => {
   test('Terms and conditions checkbox is checked when clicked', () => {
     render(<SummaryForm />)
     const checkbox = screen.getByRole('checkbox', {name: /accept terms and conditons/i})
-    fireEvent.click(checkbox)
+    userEvent.click(checkbox)
     expect(checkbox).toBeChecked()
   })
 
@@ -27,10 +28,10 @@ describe('Summary form is rendered and interactive', () => {
     render(<SummaryForm />)
     const checkbox = screen.getByRole('checkbox', {name: /accept terms and conditons/i})
     const button = screen.getByRole('button', {name: /place order/i})
-    fireEvent.click(checkbox)
+    userEvent.click(checkbox)
     expect(checkbox).toBeChecked()
     expect(button).toBeEnabled()
-    fireEvent.click(checkbox)
+    userEvent.click(checkbox)
     expect(checkbox).not.toBeChecked()
     expect(button).toBeDisabled()
   })
