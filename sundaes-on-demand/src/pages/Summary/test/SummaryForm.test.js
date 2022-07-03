@@ -1,12 +1,12 @@
 
-import { screen, render } from '@testing-library/react'
+import { screen, render, waitForElementToBeRemoved } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import SummaryForm from '../SummaryForm'
 
 
-describe('Summary form is rendered and interactive', () => {
+describe('Summary form is rendered and is interactive', () => {
 
-  test('Summary form is present', () => { 
+  test('Summary form is rendered', () => { 
     render(<SummaryForm />)
     expect(screen.getByRole('form', { name: /place order/i})).toBeInTheDocument()
   })
@@ -35,4 +35,15 @@ describe('Summary form is rendered and interactive', () => {
     expect(checkbox).not.toBeChecked()
     expect(button).toBeDisabled()
   })
-}) 
+  test('Popover shows when terms and conditions is hovered', async () => {
+    render(<SummaryForm />)
+    const popoverNull = screen.queryByText('popover', {name: /there are no terms and conditions/i})
+    expect(popoverNull).not.toBeInTheDocument()
+    const termsAndConditions = screen.getByTestId('terms-and-conditions')
+    userEvent.hover(termsAndConditions) 
+    const popover = screen.getByText('there are no terms and conditions')
+    expect(popover).toBeInTheDocument()
+    userEvent.unhover(termsAndConditions)
+    expect(popover).not.toBeInTheDocument()
+   })
+})
